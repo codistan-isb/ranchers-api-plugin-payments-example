@@ -18,12 +18,14 @@ const PROCESSOR = "Example";
 export default async function exampleCreateAuthorizedPayment(context, input) {
   const {
     amount,
+    tax,
+    totalAmount,
+    finalAmount,
     billingAddress,
     shopId,
-    paymentData: {
-      fullName
-    }
+    paymentData: { fullName },
   } = input;
+  console.log("example ", input)
 
   return {
     _id: Random.id(),
@@ -32,7 +34,7 @@ export default async function exampleCreateAuthorizedPayment(context, input) {
     createdAt: new Date(),
     data: {
       fullName,
-      gqlType: "ExampleIOUPaymentData" // GraphQL union resolver uses this
+      gqlType: "ExampleIOUPaymentData", // GraphQL union resolver uses this
     },
     displayName: `IOU from ${fullName}`,
     method: METHOD,
@@ -44,6 +46,9 @@ export default async function exampleCreateAuthorizedPayment(context, input) {
     shopId,
     status: "created",
     transactionId: Random.id(),
-    transactions: []
+    transactions: [],
+    tax,
+    totalAmount,
+    finalAmount,
   };
 }
