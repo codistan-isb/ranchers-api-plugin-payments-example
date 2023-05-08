@@ -25,7 +25,7 @@ export default async function exampleCreateAuthorizedPayment(context, input) {
     shopId,
     paymentData: { fullName },
   } = input;
-  console.log("example ", input)
+  // console.log("example ", input)
 
   return {
     _id: Random.id(),
